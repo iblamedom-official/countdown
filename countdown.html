@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  .timer {
+    font-size: 48px;
+    font-family: Arial, sans-serif;
+  }
+  .circle {
+    border: 3px solid red;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: shrink 33s linear forwards;
+  }
+  @keyframes shrink {
+    from {
+      width: 200px;
+      height: 200px;
+    }
+    to {
+      width: 0px;
+      height: 0px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="circle">
+  <div class="timer" id="timer">33</div>
+</div>
+
+<script>
+  let timeLeft = 33;
+  const timerElement = document.getElementById('timer');
+
+  function updateTimer() {
+    timeLeft--;
+    timerElement.textContent = timeLeft > 0 ? timeLeft : 0;
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+    }
+  }
+
+  const timerInterval = setInterval(updateTimer, 1000);
+</script>
+</body>
+</html>
